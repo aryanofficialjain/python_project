@@ -84,7 +84,7 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABSE_URL")
+database_url = os.environ.get("DATABASE_URL")
 DATABASES['default'] = dj_database_url.parse(database_url)
 
 # postgresql://django_twitter_database_user:mJR1szwTY8e7mj4t1xYHGjog3Ex0Verr@dpg-crt98852ng1s73bud3dg-a/django_twitter_database
