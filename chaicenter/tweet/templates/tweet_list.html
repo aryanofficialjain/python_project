@@ -1,5 +1,7 @@
+
 {% extends "layout.html" %}
 
+{% load static %} 
 {% block title %}
   Tweet
 {% endblock %}
@@ -17,7 +19,7 @@
                     {% if tweet.photo and tweet.photo.url %}
                         <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet image">
                     {% else %}
-                        <img src="" class="card-img-top" alt="Default image">  {# Optional default image #}
+                        <img src="{% static 'default.png' %}" class="card-img-top" alt="Default image">  {# Optional default image #}
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ tweet.user.username }}</h5>
