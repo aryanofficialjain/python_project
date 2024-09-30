@@ -14,20 +14,23 @@
         {% for tweet in tweets %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet image">
+                    {% if tweet.photo and tweet.photo.url %}
+                        <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet image">
+                    {% else %}
+                        <img src="" class="card-img-top" alt="Default image">  {# Optional default image #}
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ tweet.user.username }}</h5>
                         <p class="card-text">{{ tweet.text }}</p>
                         {% if tweet.user == user %}
-                        
-                        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
-                        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:3 %}
-                </div><div class="row">
+            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                </div><div class="row">  {# Start a new row for every 3 tweets, unless it's the last item #}
             {% endif %}
         {% endfor %}
     </div>
