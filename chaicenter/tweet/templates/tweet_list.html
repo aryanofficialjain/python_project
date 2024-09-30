@@ -1,15 +1,18 @@
-
 {% extends "layout.html" %}
+{% load static %}
 
-{% load static %} 
 {% block title %}
-  Tweet
+  Tweet List
 {% endblock %}
 
 {% block content %}
 <h1 class="text-center mt-4">Welcome To Tweet</h1>
 
-<a class="btn btn-primary" href="{% url 'tweet_create' %}">Create</a>
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tweet_create' %}">Create Tweet</a>
+{% else %}
+<p class="text-center">Please <a href="{% url 'login' %}">login</a> to create a tweet.</p>
+{% endif %}
 
 <div class="container mt-4">
     <div class="row">
